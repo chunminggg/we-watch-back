@@ -5,6 +5,8 @@ import Routers from './router';
 
 import Util from './libs/util';
 import App from './app.vue';
+import network from './tools/network.js'
+import VueQuillEditor from 'vue-quill-editor'
 import 'iview/dist/styles/iview.css';
 
 
@@ -12,6 +14,8 @@ Vue.use(VueRouter);
 
 
 Vue.use(iView);
+Vue.use(network)
+Vue.use(VueQuillEditor)
 
 
 
