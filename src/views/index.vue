@@ -107,7 +107,7 @@ export default {
             if (name == '1-1') this.$router.push({ path: '/upload', name: 'upload', params: { 'productId': 'new' } })
             if (name == '1-2') this.$router.push('/productManage')
             // if (name == '3-1') this.$router.push('/users')
-            // if (name == '1-3') this.$router.push('/theme')
+            if (name == '1-3') this.$router.push('/theme')
             // if (name == '1-4') this.$router.push('/mainScroll')
             // if (name == '2-2') this.$router.push('/reserveList')
         },

@@ -54,6 +54,37 @@ export default {
     var todo = AV.Object.createWithoutData('Product', uid)
     return todo.destroy()
   },
+  // 品牌上传
+  uploadTheme(dict, successCallback, errorCallback) {
+        var Theme = AV.Object.extend('Theme')
+        var theme = new Theme()
+        var themeCount = new AV.Query('Theme')
+        let mySign = false
+        if (dict.onlyId.length) {
+            theme = AV.Object.createWithoutData('Theme', dict.onlyId)
+            mySign = true
+        }
+        theme.set('name', dict.name)
+        theme.set('brief', dict.brief)
+        theme.set('imageArray', dict.imageArray)
+        themeCount.count().then(count => {
+            if (!mySign) {
+                theme.set('type', count + 1)
+            }
+            return theme.save()
+        }).then((todo) => {
+            successCallback()
+        }, (error) => {
+            errorCallback()
+        })
+
+    },
+    //获取品牌列表
+      getThemelist() {
+        var query = new AV.Query('Theme')
+        query.ascending('type')
+        return query.find()
+    },
   // 基类方法
   addCommonTodo(className, obj) {
 

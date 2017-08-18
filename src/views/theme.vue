@@ -6,7 +6,7 @@
 
 <template>
     <div class="content">
-        <Input v-model="themeName" placeholder="主题名称(例:巴厘岛)" class="product"></Input>
+        <Input v-model="themeName" placeholder="主题名称(例:天梭)" class="product"></Input>
         <Input v-model="themeBrief" placeholder="主题简介" class="product"></Input>
         <image-upload class="product" @send-image="getImageArray" :uploadList="imageArray"></image-upload>
         <Button type="success" class="product" long @click="submitData">确认提交</Button>
@@ -39,7 +39,8 @@
             var dict = {
                 'name': _self.themeName,
                 'brief':_self.themeBrief,
-                'imageArray':_self.imageArray
+                'imageArray':_self.imageArray,
+                'onlyId':'',
             }
             network.uploadTheme(dict,(data)=>{
             _self.$Message.success('上传成功')

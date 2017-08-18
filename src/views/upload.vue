@@ -39,26 +39,7 @@ export default {
             productName: '',
             productPrice: '',
             productIntro:'',
-            productTypes: [{
-                value: 0,
-                label: '卡地亚'
-            },
-            {
-                value: 1,
-                label: '劳力士'
-            },
-            {
-                value: 2,
-                label: '阿玛尼'
-            },
-            {
-                value: 3,
-                label: '浪琴'
-            },
-            {
-                value: 4,
-                label: '天梭'
-            },
+            productTypes: [
             ],
             productTypeSelected: 0,
             imageArray: [],
@@ -68,7 +49,15 @@ export default {
     created() {
         var _self = this
         _self.productId = this.$route.params.productId
+        network.getThemelist().then(data=>{
+            _self.productTypes = data.map(obj=>{
 
+                return {
+                    value:obj.attributes.type,
+                    label:obj.attributes.brief,
+                }
+            })
+        })
         if (_self.productId == 'new') {
             return
         }
@@ -80,6 +69,7 @@ export default {
             _self.productIntro = dataAttr.briefIntro
             _self.richItem.content = dataAttr.detailContent
             _self.imageArray = dataAttr.imageArray
+           
         },(error)=>{
             _self.$Message.error('获取数据失败')
         })
@@ -99,7 +89,7 @@ export default {
                 imageArray: _self.imageArray,
                 detailContent: _self.richItem.content,
                 briefIntro:_self.productIntro,
-                type:_self.productTypes[_self.productTypeSelected].label,
+                type:_self.productTypes[_self.productTypeSelected-1].label,
                 typeSelected:_self.productTypeSelected
             }
 
