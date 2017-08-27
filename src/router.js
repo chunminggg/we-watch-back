@@ -9,7 +9,7 @@ const routers = [
 {
     path: '/',
     meta: {
-        title: '超想去旅行'
+        title: '天海表阁'
     },
     component: (resolve) => require(['./views/index.vue'], resolve),
     children: [{
