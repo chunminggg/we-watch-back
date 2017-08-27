@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "watch-collect",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -18,8 +18,11 @@
   "dependencies": {
     "axios": "^0.15.3",
     "iview": "^2.0.0-rc.13",
-    "leancloud-storage": "^3.1.0",
+    "js-cookie": "^2.1.4",
+    "leancloud-storage": "^3.0.2",
+    "moment": "^2.18.1",
     "vue": "^2.2.6",
+    "vue-quill-editor": "^2.2.6",
     "vue-router": "^2.3.1"
   },
   "devDependencies": {

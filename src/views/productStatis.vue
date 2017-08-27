@@ -21,9 +21,6 @@
             </Row>
         </div>
         <Table height="500" :columns="columns" :data="dataArray"></Table>
-        <Modal v-model="modal1" title="删除操作" @on-ok="removeProdcut">
-            <p>确认将编号为{{productNumber}}的产品删除吗</p>
-        </Modal>
 
     </div>
 </template>
@@ -42,6 +39,9 @@ export default {
                 {
                     title: '名称',
                     key: 'name'
+                }, {
+                    title: '点击次数',
+                    key: 'countNumber',
                 },
                 {
                     title: '编号',
@@ -51,11 +51,7 @@ export default {
                     title: '价格',
                     key: 'price'
                 },
-                {
-                    title: '开始时间',
-                    key: 'startDate',
-
-                }, {
+                 {
                     title: '排序',
                     key: 'action',
                     width: 150,
@@ -92,25 +88,14 @@ export default {
                                     size: 'small'
                                 },
                                 style: {
-                                    marginRight: '5px'
+                                   
                                 },
                                 on: {
                                     click: () => {
                                         this.modfifyProduct(params)
                                     }
                                 }
-                            }, '修改'),
-                            h('Button', {
-                                props: {
-                                    type: 'error',
-                                    size: 'small'
-                                },
-                                on: {
-                                    click: () => {
-                                        this.deleteProduct(params)
-                                    }
-                                }
-                            }, '配置')
+                            }, '修改')
                         ]);
                     }
                 }
@@ -183,23 +168,23 @@ export default {
                     _self.dataArray = netDataArray
                 }, (error) => {
 
-                  
-                });
-       
-             
-        }
-    },
-    //置顶
-    setFirst(params) {
-        this.productNumber = params.row.uid
-        network.setFirstProduct(this.productNumber).then(data => {
-            this.$Message.success('置顶成功')
-        }, error => {
-            this.$Message.error('置顶失败')
 
-        })
+                });
+
+
+            }
+        },
+        //置顶
+        setFirst(params) {
+            this.productNumber = params.row.uid
+            network.setFirstProduct(this.productNumber).then(data => {
+                this.$Message.success('首页置顶成功')
+            }, error => {
+                this.$Message.error('置顶失败')
+
+            })
+        },
     },
-},
 
 }    
 </script>

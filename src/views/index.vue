@@ -54,14 +54,15 @@
                     <Submenu name="1">
                         <template slot="title">
                             <Icon type="ios-navigate"></Icon>
-                            产品管理
+                            咨询发布
                         </template>
                         <Menu-item name="1-1">
                             发布产品
                         </Menu-item>
-                        <Menu-item name="1-2">产品统计</Menu-item>
+                        <Menu-item name="1-2">产品管理</Menu-item>
                         <Menu-item name="1-3">品牌发布</Menu-item>
-                        <!--<Menu-item name="1-4">首页管理</Menu-item>-->
+                        <Menu-item name="1-4">首页管理</Menu-item>
+                         <Menu-item name="1-5">品牌管理</Menu-item>
                     </Submenu>
                     <Submenu name="2">
                         <template slot="title">
@@ -74,9 +75,10 @@
                     <Submenu name="3">
                         <template slot="title">
                             <Icon type="ios-analytics"></Icon>
-                            客户管理
+                            数据分析
                         </template>
                         <Menu-item name="3-1">客户统计</Menu-item>
+                        <Menu-item name="3-2">点击统计</Menu-item>
                     </Submenu>
                 </Menu>
             </i-col>
@@ -106,10 +108,12 @@ export default {
             // debugger
             if (name == '1-1') this.$router.push({ path: '/upload', name: 'upload', params: { 'productId': 'new' } })
             if (name == '1-2') this.$router.push('/productManage')
-            // if (name == '3-1') this.$router.push('/users')
             if (name == '1-3') this.$router.push('/theme')
-            // if (name == '1-4') this.$router.push('/mainScroll')
-            // if (name == '2-2') this.$router.push('/reserveList')
+            if (name == '1-4') this.$router.push('/mainScroll')
+            if (name == '1-5') this.$router.push('/themeManage')
+            if (name == '2-2') this.$router.push('/reserveList')
+            if (name == '3-1') this.$router.push('/users')
+            if(name == '3-2') this.$router.push('/productStatis')
         },
     }
 }

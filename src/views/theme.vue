@@ -6,8 +6,8 @@
 
 <template>
     <div class="content">
-        <Input v-model="themeName" placeholder="主题名称(例:天梭)" class="product"></Input>
-        <Input v-model="themeBrief" placeholder="主题简介" class="product"></Input>
+        <Input v-model="themeName" placeholder="品牌名称(例:天梭)" class="product"></Input>
+        <Input v-model="themeBrief" placeholder="主题简介(例：华美·天梭)" class="product"></Input>
         <image-upload class="product" @send-image="getImageArray" :uploadList="imageArray"></image-upload>
         <Button type="success" class="product" long @click="submitData">确认提交</Button>
     
@@ -26,7 +26,19 @@
                 themeName: '',
                 themeBrief: '',
                 imageArray: [],
+                onlyId:''
+            }
+        },
+        created(){
+            var _self = this
 
+            if(this.$route.params.productId != undefined){
+                _self.onlyId = this.$route.params.productId
+                network.getDetailThemm(_self.onlyId).then(data=>{
+                    _self.themeName = data.attributes.name
+                    _self.themeBrief = data.attributes.brief
+                    _self.imageArray = data.attributes.imageArray
+                })
             }
         },
         methods:{
@@ -40,7 +52,19 @@
                 'name': _self.themeName,
                 'brief':_self.themeBrief,
                 'imageArray':_self.imageArray,
-                'onlyId':'',
+                'onlyId':_self.onlyId
+            }
+            if (!_self.themeName.length) {
+                 _self.$Message.error('名称未填写')
+                 return
+            }
+             if (!_self.themeBrief.length) {
+                 _self.$Message.error('简称未填写')
+                 return
+            }
+             if (!_self.imageArray.length) {
+                 _self.$Message.error('图片至少上传一张')
+                 return
             }
             network.uploadTheme(dict,(data)=>{
             _self.$Message.success('上传成功')
